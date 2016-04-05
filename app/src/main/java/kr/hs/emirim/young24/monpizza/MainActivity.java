@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try{ //공 날라오는 것이라고 생각하면 됨, 이 안에서 예외가 생기면 catch로 넘어감, 예외가 없으면 마무리
             Toast.makeText(this,name+"씨, 배고파요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
             Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
+            intent.putExtra("name",name); //name을 넘겨주고, 값을 넘겨줌 / extra:추가
+            intent.putExtra("age",10); //원하는 만큼 데이터를 넘겨줄 수 있다. 2번째 activity에 넘겨줄 수 0, 그러나 이미지나 큰 데이터는 옮길 수 없다.
             startActivity(intent);
         }catch(NullPointerException e){//null이 있으면 이것을 실행된다.
             Toast.makeText(this,"이름을 입력해주세요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
