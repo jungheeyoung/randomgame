@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() { //매번 처리해야 되는 것, 화면이 보여질 때마다
         super.onResume();
-        mName.setText("");//text공간을 비우게 해줌
+        mName.setText(null);//text 공간을 비우게 해줌
+
     }
 
     /**
@@ -36,8 +37,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
-        Toast.makeText(this,"배고파워!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간
-        Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
-        startActivity(intent);
+        String name = mName.getText().toString(); //return type : editable / editable에서 입력받은 값을 toString 으로 변환시켜줘야된다.
+//        if(name==null){
+//            Toast.makeText(this,"이름을 입력해주세요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
+//        }
+//        else{
+//            Toast.makeText(this,name+"씨, 배고파요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
+//            Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
+//            startActivity(intent);
+//        }
+        try{ //공 날라오는 것이라고 생각하면 됨, 이 안에서 예외가 생기면 catch로 넘어감, 예외가 없으면 마무리
+            Toast.makeText(this,name+"씨, 배고파요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
+            Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
+            startActivity(intent);
+        }catch(NullPointerException e){//null이 있으면 이것을 실행된다.
+            Toast.makeText(this,"이름을 입력해주세요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
+        }catch (Exception e){//모든 예외의 어머니, 나머지 에러는 여기서 처리
+            Toast.makeText(this,"뭔지는 모르겠지만 잘 안되네요ㅜ_ㅜ", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
+        }
     }
 }
