@@ -1,5 +1,6 @@
 package kr.hs.emirim.young24.monpizza;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,5 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Toast.makeText(this,"배고파워!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간
+        Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
+        startActivity(intent);
     }
 }
