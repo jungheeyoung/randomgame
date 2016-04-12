@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() { //매번 처리해야 되는 것, 화면이 보여질 때마다
         super.onResume();
         mName.setText(null);//text 공간을 비우게 해줌
-
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);//다시 화면으로 돌아가면 왼쪽에서 오른쪽으로 감.
     }
 
     /**
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("name",name); //name을 넘겨주고, 값을 넘겨줌 / extra:추가
             intent.putExtra("age", 10); //원하는 만큼 데이터를 넘겨줄 수 있다. 2번째 activity에 넘겨줄 수 0, 그러나 이미지나 큰 데이터는 옮길 수 없다.
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left); //들어올 때는 오른쪽으로 슬라이드, 나갈 때는 왼쪽으로
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left); //들어올 때는 오른쪽에서 왼쪽으로, onResume에서 한번 더 정의(onClick할 때만 이것이 실행되기 때문)
         }catch(NullPointerException e){//null이 있으면 이것을 실행된다.
             Toast.makeText(this,"이름을 입력해주세요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
         }catch (Exception e){//모든 예외의 어머니, 나머지 에러는 여기서 처리
