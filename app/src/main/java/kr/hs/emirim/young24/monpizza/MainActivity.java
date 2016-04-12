@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mName = (EditText)findViewById(R.id.name);//id값을 가지고 객체를 찾아서 가져와줌,activity_main에서 찾아서 가져와줌/ mName이 EditText이므로 그에 맞게 타입캐스팅해준다. xml에 있는 EditText를 맘대로 가져올 수 o
         mButton = (Button) findViewById(R.id.btn_showmethepizza);
-        mButton.setOnClickListener(this);
+        mButton.setOnClickListener(this); //이벤트 핸들러 클래스(객체)가 들어가는 자리, 현재 메인이 이벤트 핸들러로 구현되어 있어 this로 사용 가능
     }
 
     @Override
@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,name+"씨, 배고파요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
             Intent intent = new Intent(this, ResultActivity.class);//객체 생성, 전화번호 호출이나 웹페이지 기능에 유용, context : 문맥(이미지 요청, 현재 상태 등 유용함)
             intent.putExtra("name",name); //name을 넘겨주고, 값을 넘겨줌 / extra:추가
-            intent.putExtra("age",10); //원하는 만큼 데이터를 넘겨줄 수 있다. 2번째 activity에 넘겨줄 수 0, 그러나 이미지나 큰 데이터는 옮길 수 없다.
+            intent.putExtra("age", 10); //원하는 만큼 데이터를 넘겨줄 수 있다. 2번째 activity에 넘겨줄 수 0, 그러나 이미지나 큰 데이터는 옮길 수 없다.
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left); //들어올 때는 오른쪽으로 슬라이드, 나갈 때는 왼쪽으로
         }catch(NullPointerException e){//null이 있으면 이것을 실행된다.
             Toast.makeText(this,"이름을 입력해주세요!", Toast.LENGTH_LONG).show();//현재 문맥을 넘겨줌 , duration :기간/ name에 아무것도 넣지 않으면 nullpointexception발생,출력 전에 확인해주어야 함
         }catch (Exception e){//모든 예외의 어머니, 나머지 에러는 여기서 처리
